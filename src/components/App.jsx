@@ -38,18 +38,21 @@ class App extends Component {
 
   render() {
     const { contacts, filter } = this.state;
+    // Фільтрує контакти згідно з введеним текстом фільтрації
+    const filteredContacts = contacts.filter(item => {
+      return item.name.toLowerCase().includes(filter.toLowerCase());
+    });
 
     return (
       <AppLayout>
         <h1>Phonebook</h1>
-        
         {/* Компонент для додавання нових контактів */}
         <ContactForm onAddContact={this.addContact} />
 
         {/* Умовний рендеринг списку контактів та фільтра */}
         {contacts.length > 0 && (
           <ContactList
-            contacts={contacts}
+            contacts={filteredContacts}
             filter={filter}
             onUpdateFilter={this.updateFilter}
             onDelete={this.deleteContact}

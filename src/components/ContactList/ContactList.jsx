@@ -3,16 +3,15 @@ import { Filter } from 'components/Filter/Filter';
 import { Contact } from 'components/Contact/Contact';
 
 export const ContactList = ({ contacts, filter, onUpdateFilter, onDelete }) => {
-  const filteredContacts = contacts.filter(item => {
-    return item.name.toLowerCase().includes(filter.toLowerCase());
-  });
-
   return (
     <div>
       <h2>Contacts</h2>
+      {/* Компонент для введення тексту фільтрації */}
       <Filter onUpdateFilter={onUpdateFilter} />
+
+      {/* Список контактів, відфільтрований згідно з введеним текстом фільтрації */}
       <ul>
-        {filteredContacts.map(contact => (
+        {contacts.map(contact => (
           <Contact
             key={contact.id}
             id={contact.id}
